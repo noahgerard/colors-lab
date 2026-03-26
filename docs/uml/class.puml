@@ -1,0 +1,65 @@
+@startuml
+left to right direction
+
+package "Frontend (code.js)" {
+    class FrontendApp {
+        - userId : int
+        - firstName : string
+        - lastName : string
+        - urlBase : string
+        + doLogin() : void
+        + saveCookie() : void
+        + readCookie() : void
+        + doLogout() : void
+        + addColor() : void
+        + searchColor() : void
+    }
+}
+
+package "Backend (PHP API)" {
+    class LoginAPI {
+        + getRequestInfo() : array
+        + sendResultInfoAsJson(obj : string) : void
+        + returnWithError(err : string) : void
+        + returnWithInfo(firstName : string, lastName : string, id : int) : void
+    }
+
+    class AddColorAPI {
+        + getRequestInfo() : array
+        + sendResultInfoAsJson(obj : string) : void
+        + returnWithError(err : string) : void
+    }
+
+    class SearchColorsAPI {
+        + getRequestInfo() : array
+        + sendResultInfoAsJson(obj : string) : void
+        + returnWithError(err : string) : void
+        + returnWithInfo(searchResults : string) : void
+    }
+}
+
+package "Database" {
+    class Users {
+        + ID : int
+        + Login : string
+        + Password : string
+        + firstName : string
+        + lastName : string
+    }
+
+    class Colors {
+        + UserId : int
+        + Name : string
+    }
+}
+
+FrontendApp ..> LoginAPI : POST /Login.php
+FrontendApp ..> AddColorAPI : POST /AddColor.php
+FrontendApp ..> SearchColorsAPI : POST /SearchColors.php
+
+LoginAPI ..> Users : SELECT
+AddColorAPI ..> Colors : INSERT
+SearchColorsAPI ..> Colors : SELECT
+
+Users "1" --> "0..*" Colors : owns >
+@enduml

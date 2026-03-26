@@ -1,0 +1,23 @@
+@startuml
+left to right direction
+
+actor "Guest" as Guest
+actor "Registered User" as User
+
+rectangle "Colors Lab Application" {
+    usecase "Login" as Login
+    usecase "Add Color" as AddColor
+    usecase "Search Colors" as SearchColors
+    usecase "Logout" as Logout
+}
+
+Guest --> Login
+
+User --> AddColor
+User --> SearchColors
+User --> Logout
+
+AddColor ..> Login : <<include>>
+SearchColors ..> Login : <<include>>
+Logout ..> Login : <<include>>
+@enduml

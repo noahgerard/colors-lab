@@ -1,0 +1,52 @@
+@startuml
+start
+
+:User navigates to index.html;
+:Enter username and password;
+:Submit login form;
+
+:POST credentials to Login.php;
+:Query Users table (Login, Password);
+
+if (User found?) then (No)
+  :Display "User/Password combination incorrect";
+  stop
+else (Yes)
+  :Return id, firstName, lastName;
+  :Save session cookie (20 min expiry);
+  :Redirect to color.html;
+endif
+
+:Read session cookie (readCookie);
+
+if (Valid cookie?) then (No)
+  :Redirect to index.html;
+  stop
+else (Yes)
+endif
+
+fork
+  :User enters color name;
+  :Click "Add Color";
+  :POST color + userId to AddColor.php;
+  :INSERT into Colors table;
+  :Display "Color has been added";
+fork again
+  :User enters search term;
+  :Click "Search Color";
+  :POST search + userId to SearchColors.php;
+  :SELECT matching Colors for user;
+  if (Results found?) then (No)
+    :Display "No Records Found";
+  else (Yes)
+    :Display list of matching colors;
+  endif
+fork again
+  :User clicks "Log Out";
+  :Clear session cookie;
+  :Redirect to index.html;
+  stop
+end fork
+
+stop
+@enduml
