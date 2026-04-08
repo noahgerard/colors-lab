@@ -1,0 +1,30 @@
+{
+  "name": "colors-lab",
+  "version": "1.0.0",
+  "description": "ColorsLab is a LAMP stack web application which allows users to manage and search through a personal list of colors.",
+  "homepage": "https://github.com/noahgerard/colors-lab#readme",
+  "bugs": {
+    "url": "https://github.com/noahgerard/colors-lab/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noahgerard/colors-lab.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@eslint/css": "^1.1.0",
+    "@eslint/js": "^9.39.4",
+    "@html-eslint/eslint-plugin": "^0.59.0",
+    "eslint": "^9.39.4",
+    "eslint-plugin-html": "^8.1.4"
+  }
+}
