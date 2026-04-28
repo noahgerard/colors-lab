@@ -15,7 +15,7 @@ export default defineConfig([
       "prefer-const": "error",
     },
     languageOptions: {
-      glovals: {
+      globals: {
         ...globals.jest,
       },
     },
