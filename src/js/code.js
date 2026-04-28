@@ -1,4 +1,4 @@
-const urlBase = 'http://noah-colors-lab.uk/LAMPAPI';
+const urlBase = process.env.API_URL || 'http://localhost:8080';
 const extension = 'php';
 
 let userId = 0;
@@ -108,10 +108,22 @@ function doLogout()
 	window.location.href = "index.html";
 }
 
+function validateColor(color) {
+  if (color.length > 10) return false;
+  if (color.length < 3) return false;
+
+  return true;
+}
+
 function addColor()
 {
 	const newColor = document.getElementById("colorText").value;
 	document.getElementById("colorAddResult").innerHTML = "";
+
+  if (!validateColor(newColor)) {
+    document.getElementById("colorAddResult").innerHTML = "Invalid colod!";
+    return;
+  }
 
 	const tmp = {color:newColor,userId,userId};
 	const jsonPayload = JSON.stringify( tmp );
@@ -182,4 +194,8 @@ function searchColor()
 		document.getElementById("colorSearchResult").innerHTML = err.message;
 	}
 	
+}
+
+module.exports = {
+  validateColor
 }

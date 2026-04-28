@@ -4,7 +4,7 @@
 	$color = $inData["color"];
 	$userId = $inData["userId"];
 
-	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
+	$conn = new mysqli(getenv('DB_HOST') ?: 'db', getenv('DB_USER') ?: 'TheBeast', getenv('DB_PASSWORD') ?: 'WeLoveCOP4331', getenv('DB_NAME') ?: 'COP4331');
 	if ($conn->connect_error) 
 	{
 		returnWithError( $conn->connect_error );

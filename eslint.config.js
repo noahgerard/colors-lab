@@ -3,6 +3,7 @@ import js from "@eslint/js";
 import css from "@eslint/css";
 import html from "@html-eslint/eslint-plugin";
 import { defineConfig } from "eslint/config";
+import globals from "globals";
 
 export default defineConfig([
   // 1. JavaScript Config (Standard)
@@ -12,6 +13,11 @@ export default defineConfig([
     rules: {
       semi: "error",
       "prefer-const": "error",
+    },
+    languageOptions: {
+      glovals: {
+        ...globals.jest,
+      },
     },
   },
 
